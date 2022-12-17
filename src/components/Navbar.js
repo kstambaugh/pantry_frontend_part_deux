@@ -6,7 +6,7 @@ import { CurrentUser } from "../context/CurrentUser";
 export default function NavBar() {
 
     const navigate = useNavigate()
-    const { currentUser } = useContext(CurrentUser)
+    const { currentUser, setCurrentUser } = useContext(CurrentUser)
 
     let loginActions = (
         <>
@@ -33,7 +33,9 @@ export default function NavBar() {
             <li style={{ float: 'right' }}>
                 <a href="/users/login"
                     onClick={() => {
-                        localStorage.clear();
+                        setCurrentUser('')
+                        navigate('/users/login')
+
                     }}>
                     Logout
                 </a>

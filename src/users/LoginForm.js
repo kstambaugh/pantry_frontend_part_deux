@@ -1,22 +1,24 @@
 import { useState, useContext } from "react"
 import { CurrentUser } from "../context/CurrentUser"
+import { useNavigate } from "react-router-dom"
 
 
 
 export default function LoginForm() {
 
-    const { setCurrentUser } = useContext(CurrentUser)
+    const { currentUser, setCurrentUser } = useContext(CurrentUser)
+    const navigate = useNavigate()
 
     const [credentials, setCredentials] = useState({
-        email: 'kashmonet@mail.com',
-        password: '1234'
+        email: '',
+        password: ''
     })
 
     const [errorMessage, setErrorMessage] = useState(null)
 
     async function handleSubmit(event) {
         event.preventDefault()
-        const response = await fetch('http://localhost:5000/authentication', {
+        const response = await fetch('http://localhost:5000/authentication/', {
             method: 'POST',
             credentials: 'include',
             headers: {
@@ -27,13 +29,20 @@ export default function LoginForm() {
 
         const data = await response.json()
 
+        console.log(data)
+
         if (response.status === 200) {
             setCurrentUser(data.user)
-            // localStorage.setItem('token', data.token)
+            navigate('/')
+
 
         } else {
             setErrorMessage('hello im an error', data.message)
         }
+        setCredentials({
+            email: '',
+            password: ''
+        })
     }
 
 

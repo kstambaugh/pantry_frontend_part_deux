@@ -9,10 +9,27 @@ export default function SignUpForm() {
         password: ''
     })
 
+    async function handleSubmit(e) {
+        e.preventDefault()
+        await fetch('http://localhost:5000/users/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+        setUser({
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: ''
+        })
+    }
+
 
     return (
         <div>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="firstName">First Name</label>
                     <input
@@ -32,13 +49,13 @@ export default function SignUpForm() {
                         name="lastName" />
                 </div>
                 <div>
-                    <label htmlFor="emailAddress">Email</label>
+                    <label htmlFor="email">Email</label>
                     <input
                         required
-                        value={user.emailAddress}
-                        onChange={event => setUser({ ...user, emailAddress: event.target.value })}
-                        id="emailAddress"
-                        name="emailAddress" />
+                        value={user.email}
+                        onChange={event => setUser({ ...user, email: event.target.value })}
+                        id="email"
+                        name="email" />
                 </div>
                 <div>
                     <label htmlFor="password">password</label>

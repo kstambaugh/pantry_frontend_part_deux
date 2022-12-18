@@ -27,7 +27,7 @@ const NewIngredientItem = () => {
     }
 
     async function handleSubmit() {
-        dispatch(actionCreators.add_Ingredient())
+        dispatch(actionCreators.add_Ingredient(newIngredient.ingredient_name))
         await fetch(`http://localhost:5000/ingredients`, {
             method: 'POST',
             headers: {
@@ -50,8 +50,6 @@ const NewIngredientItem = () => {
                     required
                     value={newIngredient.ingredient_name}
                     onChange={handleInputChange}
-                    // value={newIngredient.ingredient_name}
-                    // onChange={e => setNewIngredient({ ...newIngredient, ingredient_name: e.target.value, user_id: currentUser.user_id })}
                     className='ingredient_list_item'
                     id="ingrName"
                     name="ingrName" />

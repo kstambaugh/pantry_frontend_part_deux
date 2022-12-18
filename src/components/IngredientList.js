@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { CurrentUser } from "../context/CurrentUser";
 import { useLocation } from "react-router-dom";
+import ItemButtons from "./ItemButtons";
+
 
 
 
@@ -19,16 +21,23 @@ export default function IngredientList({ NewIngredientItem }) {
             });
         }
         fetchData()
-    }, [currentUser, NewIngredientItem])
+    }, [currentUser])
+
+
+
+
 
 
     return (
         <div>
-            <ul>
-                {userIngredients.map((ingredient) => (
+            {userIngredients.map((ingredient) => (
+                <ul>
                     <li key={ingredient.ingr_id}>{ingredient.ingredient_name}</li>
-                ))}
-            </ul>
+                    <ItemButtons value={ingredient} />
+                </ul>
+
+            ))}
+
         </div>
     );
 

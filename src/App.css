@@ -1,3 +1,10 @@
+* {
+  text-decoration: none;
+  color: inherit;
+  list-style: none;
+
+}
+
 .App {
   text-align: center;
   text-decoration: none;

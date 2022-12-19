@@ -1,42 +1,28 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { ListGroup } from "react-bootstrap";
+import IngredientObject from "./IngredientObject";
 import { CurrentUser } from "../context/CurrentUser";
-import { useLocation } from "react-router-dom";
-import ItemButtons from "./ItemButtons";
 
 
 
 
-export default function IngredientList({ NewIngredientItem }) {
-    const location = useLocation()
-    const [userIngredients, setUserIngredients] = useState([])
-    const { currentUser } = useContext(CurrentUser)
-    const { user_id: userId } = currentUser
 
-    useEffect(() => {
-        async function fetchData() {
-            const response = await fetch(`http://localhost:5000/ingredients/${userId}`);
-            const data = await response.json();
-            data.forEach((item) => {
-                setUserIngredients((prevIngredients) => [...prevIngredients, item])
-            });
-        }
-        fetchData()
-    }, [currentUser])
-
-
-
-
+export default function IngredientList() {
+    const items = useSelector(state => state.items)
 
 
     return (
         <div>
-            {userIngredients.map((ingredient) => (
-                <ul>
-                    <li key={ingredient.ingr_id}>{ingredient.ingredient_name}</li>
-                    <ItemButtons value={ingredient} />
-                </ul>
+            <ListGroup className="ingredient_list">
+                {items.map((item, index) => {
+                    if (!item.inPantry || !item.inGrocery)
+                        return (
+                            <IngredientObject item={item} key={index} />
+                        )
+                })}
+            </ListGroup>
 
-            ))}
 
         </div>
     );

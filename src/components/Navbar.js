@@ -54,16 +54,17 @@ export default function NavBar() {
     })
 
     return (
-        <div>
-            <h1>My Pantry</h1>
-            <nav>
+        <div className="title_page">
 
+            <h1>My Pantry</h1>
+            <span className="login_options"> {loginActions} </span>
+
+            <nav>
                 <li href="#" onClick={() => navigate("/")}><a>Home</a></li>
                 <li href="#" onClick={() => navigate(`/pantry${routeNum}`)}><a>Pantry</a></li>
                 <li href="#" onClick={() => navigate(`/grocery${routeNum}`)}><a >Grocery</a></li>
                 <li href="#" onClick={() => navigate(`/ingredients${routeNum}`)}><a >Ingredients</a></li>
             </nav>
-            {loginActions}
 
 
         </div>

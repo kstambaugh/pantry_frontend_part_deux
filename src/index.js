@@ -4,10 +4,9 @@ import App from './App';
 import CurrentUserProvider from './context/CurrentUser';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
-// import { MyStore } from './store';
 import { createStore } from 'redux';
-import rootReducer from './store/reducer';
-const myStore = createStore(rootReducer)
+import reducer from './store/reducer'
+const myStore = createStore(reducer)
 
 
 
@@ -15,15 +14,15 @@ const myStore = createStore(rootReducer)
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-  <React.StrictMode>
+
+  <Router  >
     <Provider store={myStore}>
-      <Router  >
-        <CurrentUserProvider>
-          <App />
-        </CurrentUserProvider>
-      </Router>
+      <CurrentUserProvider>
+        <App />
+      </CurrentUserProvider>
     </Provider>
-  </React.StrictMode>
+  </Router>
+
 
 
 

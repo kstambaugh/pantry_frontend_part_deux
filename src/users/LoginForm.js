@@ -46,16 +46,8 @@ export default function LoginForm() {
 
 
     return (
-        <div>
-            {errorMessage !== null
-                ? (
-                    <div className="alert">
-                        {errorMessage}
-                    </div>
-                )
-                : null
-            }
-            <form onSubmit={handleSubmit}>
+        <div className="login_page">
+            <form className="login_form" onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="email">Email</label>
                     <input
@@ -74,7 +66,7 @@ export default function LoginForm() {
                         id="password"
                         name="password" />
                 </div>
-                <input type="submit" value="Login" />
+                <input className="login_btn" type="submit" value="Login" />
             </form>
         </div>
     )

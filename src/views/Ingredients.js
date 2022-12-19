@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { CurrentUser } from "../context/CurrentUser";
-import NewIngredientItem from "../components/newIngredient";
 import IngredientList from "../components/IngredientList";
+import AddNewItem from "../components/AddIngredient";
 
 
 
@@ -14,15 +14,19 @@ export default function Ingredients() {
 
     if (currentUser) {
         return (
-            <div>
+            <div className="ingredient_page main_view">
                 <h1>Ingredients</h1>
-                <NewIngredientItem />
-                <IngredientList NewIngredientItem={NewIngredientItem} />
+                <AddNewItem />
+                <IngredientList />
+
             </div>
         )
     } else {
         return (
-            <h1>Please Login To Use This Feature</h1>
+
+            <div className="please_login_message">
+                <h2>Please Login To Use This Feature</h2>
+            </div>
 
         )
     }

@@ -28,8 +28,8 @@ export default function SignUpForm() {
 
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
+        <div className="sign_up_page">
+            <form className="sign_up_form" onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="firstName">First Name</label>
                     <input
@@ -66,7 +66,7 @@ export default function SignUpForm() {
                         id="password"
                         name="password" />
                 </div>
-                <input type="submit" value="Sign Up" />
+                <input className="signup_btn" type="submit" value="Sign Up" />
             </form>
         </div>
     )

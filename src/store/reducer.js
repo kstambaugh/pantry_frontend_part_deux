@@ -2,36 +2,8 @@ const initalState = {
     items: []
 }
 
-const addItemToPantry = (array, action) => {
-    return array.map((item, index) => {
-        if (item.value !== action.payload) {
-            return item;
-        }
-        return {
-            ...item,
-            inPantry: true,
-            inGrocery: false
-        }
-    })
-}
-const addItemToGrocery = (array, action) => {
-    return array.map((item, index) => {
-        if (item.value !== action.payload) {
-            return item;
-        }
-        return {
-            ...item,
-            inPantry: false,
-            inGrocery: true
-        }
-    })
-}
-
-const removeItem = (array, action) => {
-    return array.filter((item, index) => index !== action.payload);
-};
-
 export default (state = initalState, action) => {
+
     switch (action.type) {
         case "ADD_INGREDIENT":
             return {
@@ -41,45 +13,68 @@ export default (state = initalState, action) => {
                     {
                         value: action.payload,
                         inPantry: false,
-                        inGrocery: false
+                        inGrocery: false,
                     }
                 ]
             }
-        case "REMOVE_INGREDIENT":
-            return {
-                ...state,
-                items: removeItem(state.items, action)
-            }
-
-        case "ADD_TO_PANTRY":
-            return {
-                ...state,
-                items: addItemToPantry(state.items, action)
-            };
-        case "REMOVE_FROM_PANTRY":
-            return {
-                ...state,
-                items: [
-                    ...state.items,
-                    {
-                        value: action.payload,
-                        inPantry: false
-                    }
-                ]
-            };
         case "ADD_TO_GROCERY":
             return {
                 ...state,
-                items: addItemToGrocery(state.items, action)
-            }
-        case "REMOVE_FROM_GROCERY":
+                items: state.items.map(item => {
+                    if (item.value === action.payload) {
+                        return {
+                            ...item,
+                            inPantry: false,
+                            inGrocery: true,
+                        }
+                    }
+                })
+            };
+        case "ADD_TO_PANTRY":
+            return {
+                ...state,
+                items: state.items.map(item => {
+                    console.log('At the add to pantry case:::', 'item value:', item.value, ',action payload:', action.payload, ',state.items:', state.items, ',item:', item)
+                    if (item.value === action.payload) {
+                        return {
+                            ...item,
+                            inPantry: true,
+                            inGrocery: false,
+                        }
+                    }
+                })
+
+            };
+        case 'DELETE_INGREDIENT':
+            const index = state.items.findIndex(item => item.value === action.payload)
             return {
                 ...state,
                 items: [
-                    ...state.items,
+                    ...state.items.slice(0, index),
+                    ...state.items.slice(index + 1)
+                ]
+            }
+
+        case "REMOVE_FROM_PANTRY":
+            return {
+                items: [
                     {
                         value: action.payload,
-                        inGrocery: false
+                        inPantry: false,
+                        inGrocery: false,
+
+                    }
+                ]
+            };
+
+        case "REMOVE_FROM_GROCERY":
+            return {
+                items: [
+                    {
+                        value: action.payload,
+                        inPantry: false,
+                        inGrocery: false,
+
                     }
                 ]
             };

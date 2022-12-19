@@ -2,24 +2,134 @@
   text-decoration: none;
   color: inherit;
   list-style: none;
-
+  padding: 0;
+  margin: 0;
 }
 
-.App {
+body {
+  background-color: lightblue;
+}
+
+.title_page {
+  background-color: lightblue;
+}
+
+.title_page h1 {
   text-align: center;
-  text-decoration: none;
-  color: inherit;
-  list-style: none;
+  padding: 10px;
 }
 
-.ingredientItems {
-  background-color: black;
-  color: white;
+.login_options {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+}
+
+.login_options li {
+  margin: 1px 8px;
+}
+
+.title_page nav {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
 }
 
+nav li {
+  background-color: white;
+  padding: 5px 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  font-weight: 700;
+}
+
+nav li:hover {
+  background-color: goldenrod;
+
+}
+
+.please_login_message {
+  margin: 50px;
+  text-align: center;
+}
+
+.main_view {
+  text-align: center;
+}
+
+.sign_up_page,
+.login_page,
+.ingredient_page,
+.home_page,
+.main_view,
+.pantry_page {
+  background-color: goldenrod;
+  height: 60vh;
+}
+
+.sign_up_form,
+.login_form {
+  text-align: end;
+  position: relative;
+  right: 33%;
+  top: 20%
+}
+
+.sign_up_form div,
+.login_form div {
+  padding: 10px;
+}
+
+.sign_up_form label,
+.login_form label {
+  margin: 0px 10px;
+  font-weight: 700;
+}
+
+.signup_btn,
+.login_btn {
+  position: relative;
+  right: 10%;
+  margin: 10px 0px;
+  padding: 5px;
+  background-color: lightskyblue;
+}
+
+.ingredient_list,
+.pantry_page,
+.grocery_page {
+  height: 40vh;
+  margin: 10px;
+  padding: 10px;
+  border: solid black;
+  box-shadow: inset 0px 0px 15px grey;
+  background-color: whitesmoke;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+}
+
+.ingredient_object {
+  background-color: whitesmoke;
+  border-radius: 10px;
+  border: solid black;
+  box-shadow: 0px 0px 5px gray;
+  margin: 10px 70px;
+  font-weight: 700;
+}
+
+.ingredient_object p {
+  padding: 5px;
+
+}
+
 .ingr_btn {
-  width: auto;
+  margin: 5px 15px;
+  padding: 0px 10px;
+  background-color: lightblue;
+}
+
+.newIngr_btn {
+  background-color: lightblue;
+  padding: 1px 7px;
 }

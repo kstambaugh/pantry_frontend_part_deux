@@ -8,13 +8,14 @@ import Ingredients from './views/Ingredients';
 import SignUpForm from './users/SignUp';
 import LoginForm from './users/LoginForm';
 import Error404 from './views/Error404';
+
+
 import { useEffect, useContext, useState } from 'react';
 import { CurrentUser } from './context/CurrentUser';
 
 function App() {
 
   const [routeNum, setRouteNum] = useState('')
-
   const { currentUser } = useContext(CurrentUser)
 
 
@@ -25,7 +26,7 @@ function App() {
   }, [currentUser])
 
   return (
-    <>
+    <div className='absolute_div'>
       <NavBar />
       <Routes>
         <Route exact path='/' element={Home()} />
@@ -36,7 +37,8 @@ function App() {
         <Route exact path='users/login/' element={LoginForm()} />
         <Route path='*' element={Error404()} />
       </Routes>
-    </>
+    </div>
+
 
 
 
